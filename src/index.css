@@ -1,0 +1,612 @@
+/* 🔧 Box Sizing fix für das ganze Projekt */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-image: url(wetter.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #333;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3); /* dunkler Schleier */
+  z-index: -1;
+}
+
+.header {
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto; /* Zentriert horizontal*/
+  height: 50px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.top-row {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 100px;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.top-row h1 {
+  display: flex;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: sans-serif;
+  margin-left: 1rem;
+  background: linear-gradient(to right, #ff0080, #2846ca);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* form */
+form {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.5rem 2rem 1.5rem 4rem;
+  gap: 1rem;
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+}
+
+/* Eingabefeld */
+input[type="text"] {
+  padding: 0.4rem 2.5rem 0.4rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #60a5fa;
+  border-radius: 20px;
+  outline: none;
+  width: 100%;
+  background-color: #f0f9ff;
+  position: relative;
+  left: 1rem;
+}
+
+/* Suchen - Button 🔍 */
+.submit-Btn {
+  position: absolute;
+  right: -11px;
+  top: 3.5px;
+  transform: translateY((-50%));
+  padding: 0.4rem 0.8rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.7rem;
+  transition: background-color 0.3s ease;
+}
+
+.submit-Btn:hover {
+  transform: scale(1.03);
+}
+
+.submit-Btn:active {
+  transform: scale(0.98);
+}
+
+/* Wetter- card div */
+.wetter-card {
+  width: 70vw;
+  height: 40vh;
+  background-color: rgba(255, 255, 255, 0.359);
+  margin: 0 auto;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 1;
+  transition: all 0.6s ease;
+  opacity: 9;
+}
+
+.wetter-card.centered {
+  margin: 0 auto;
+  height: 600px;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Stadt, datum und description + icon*/
+.city-name {
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  left: 1.5rem;
+  bottom: 1rem;
+}
+
+.img-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  bottom: 14.5rem;
+  height: 90px;
+}
+
+.img {
+  width: 150px;
+  height: 150px;
+}
+
+.descrip-info {
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  right: 1.8rem;
+  bottom: 15rem;
+}
+
+.aktuelles-datum {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  bottom: 2rem;
+  left: 1.5rem;
+  font-style: italic;
+}
+
+/* Temperatur Info */
+.temp-info {
+  font-size: 2rem;
+  font-weight: bold;
+  position: relative;
+  left: 2rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Feuchtigkeit Info */
+.feucht-info {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: relative;
+  top: 3rem;
+  left: 1.5rem;
+}
+
+/* Windstärke Info */
+.wind-info {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
+  bottom: 0.8rem;
+  right: 1.8rem;
+}
+
+/* Vorhersagen */
+.forecast-wrapper {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 1rem 1rem auto;
+  padding: 2rem;
+  width: 45%;
+  flex-direction: column;
+}
+
+.day-card {
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 1rem;
+  color: white;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  min-width: 320px;
+  height: 100px;
+  transition: transform 0.5s ease;
+}
+
+.wochentag {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  bottom: 1.3rem;
+}
+
+.wochen-img-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: relative;
+  bottom: 4.5rem;
+}
+
+.wochentag-temp {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  right: 4rem;
+  bottom: 8rem;
+  font-size: 1.3rem;
+}
+
+.wochentag-des {
+  position: relative;
+  bottom: 9rem;
+}
+
+/* Find your location pic */
+.startbild-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+.startbild {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+
+/* Stadt Bild*/
+.haupt-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: -2.5rem;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+/* Stadtbild links */
+.stadtbild-box {
+  height: 390px;
+  z-index: 2;
+  position: relative;
+  left: 1rem;
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.stadtbild {
+  filter: brightness(1.1);
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.sun-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+  right: 19.5rem;
+  bottom: 3.5rem;
+  width: 380px;
+  height: 190px;
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 0.5rem;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.sun-box-rise {
+  margin-top: 2rem;
+  width: 200px;
+  height: 150px;
+  position: relative;
+  bottom: 1rem;
+  border-right: 5px solid white;
+}
+
+.sun-box-set {
+  margin-top: 2rem;
+  width: 200px;
+  height: 150px;
+  position: relative;
+  bottom: 1rem;
+}
+
+.sun-icons {
+  color: white;
+  font-size: 65px;
+  position: relative;
+  top: 2rem;
+}
+
+/* Responsive */
+@media (min-width: 1000px) {
+  /* Wetterkarte als Grid */
+  .wetter-card {
+    width: 50vw;
+  }
+  /* Stadt, datum und description + icon*/
+  .city-name {
+    font-size: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    left: 3rem;
+  }
+  .img-container {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    bottom: 26.5rem;
+    height: 150px;
+  }
+  .img {
+    width: 190px;
+    height: 200px;
+  }
+  .descrip-info {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    right: 2.5rem;
+    bottom: 28rem;
+  }
+  .aktuelles-datum {
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    bottom: 2rem;
+    left: 3rem;
+    font-style: italic;
+    font-size: 1.3rem;
+  }
+  /* Temperatur Info */
+  .temp-info {
+    font-size: 2.5rem;
+    font-weight: bold;
+    position: relative;
+    bottom: 2rem;
+    left: 3.5rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+  /* Feuchtigkeit Info */
+  .feucht-info {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    left: -2rem;
+    top: -1.5rem;
+    height: 5rem;
+  }
+  /* Windstärke Info */
+  .wind-info {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    bottom: 8.5rem;
+    right: 2.5rem;
+  }
+
+  /* Grid container für Vorhersage-Karten */
+  .forecast-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    width: 90%;
+    max-width: 1000px;
+    margin: 1rem auto;
+    gap: 1rem;
+  }
+
+  .day-card {
+    min-height: 280px;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(6px);
+    border-radius: 80px;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    min-width: 160px;
+    margin: 0 1.5rem;
+  }
+
+  .wochentag {
+    margin-top: 3rem;
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    justify-content: center;
+  }
+
+  .wochen-img-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -0.3rem;
+  }
+
+  .wochentag-temp {
+    font-size: 1.2rem;
+    font-weight: 500;
+    position: relative;
+    bottom: 0.5rem;
+    right: 2.5rem;
+  }
+
+  .wochentag-des {
+    position: relative;
+    bottom: 1.3rem;
+    font-size: 1.2rem;
+  }
+
+  /* Layout für Stadtbild + Wetterkarte */
+  .haupt-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1rem 8.5rem;
+    width: 90vw;
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+    margin-right: 7rem;
+  }
+
+  .stadtbild-box {
+    height: clamp(390px, 30vw, 400px);
+    z-index: 2;
+    position: relative;
+    width: clamp(300px, 30vw, 400px);
+    flex-shrink: 0;
+    transform: translateX(3rem);
+  }
+
+  .stadtbild {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Sonnenauf-/ -untergang*/
+  .sun-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    right: 1rem;
+    bottom: 32rem;
+    width: 400px;
+    height: 220px;
+    background: none;
+    backdrop-filter: none;
+    border: none;
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .sun-box-rise {
+    margin-top: 2rem;
+    width: 200px;
+    height: 50px;
+    position: relative;
+    bottom: 2.5rem;
+    border: none;
+  }
+
+  .sun-box-set {
+    margin-top: 2rem;
+    width: 200px;
+    height: 50px;
+    position: relative;
+    bottom: 2.5rem;
+  }
+
+  .sun-icons {
+    color: white;
+    font-size: 40px;
+    position: relative;
+    top: 2rem;
+  }
+}
+
+/* Für Tablet bildschirme */
+@media (min-width: 1000px) and (max-width: 1454px) {
+  .city-name {
+    font-size: 1.5rem;
+  }
+  .img-container {
+    bottom: 23.5rem;
+    height: 150px;
+  }
+  .img {
+    width: 140px;
+    height: 160px;
+  }
+  .descrip-info {
+    font-size: 1.3rem;
+    bottom: 26.5rem;
+    right: 1rem;
+  }
+  .aktuelles-datum {
+    font-size: 1.2rem;
+  }
+  /* Temperatur Info */
+  .temp-info {
+    font-size: 2.3rem;
+    bottom: 1rem;
+  }
+  /* Feuchtigkeit Info */
+  .feucht-info {
+    font-size: 1.3rem;
+  }
+  /* Windstärke Info */
+  .wind-info {
+    font-size: 1.3rem;
+  }
+
+  /* Sonnenauf-/ -untergang*/
+  .sun-info {
+    font-size: 1.5rem;
+    bottom: 29rem;
+    right: 2.5rem;
+  }
+
+  .sun-box-set {
+    right: 2.5rem;
+  }
+
+  .sun-icons {
+    font-size: 35px;
+  }
+}
