@@ -25,3 +25,5 @@ dist-ssr
 .vite
 # .env-Datei 
 .env
+# Local Netlify folder
+.netlify

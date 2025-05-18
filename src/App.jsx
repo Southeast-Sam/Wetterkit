@@ -28,8 +28,7 @@ function App() {
   // async openweather (wetter infos) API
   async function handleSearch(stadt) {
     try {
-      const apiKeyOpenweather = import.meta.env.VITE_OPENWEATHER_KEY;
-      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${stadt}&appid=${apiKeyOpenweather}&units=metric&lang=de`;
+      const url = `/.netlify/functions/forecast?q=${stadt}`;
       const res = await fetch(url);
       const daten = await res.json();
       setForecast(daten);
