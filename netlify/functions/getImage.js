@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 
 exports.handler = async function (event) {
   const query = event.queryStringParameters.stadt || "stadt";
-  const UNSPLASH_KEY = process.env.UNSPLASH_ACCESS_KEY;
+  const UNSPLASH_KEY = process.env.VITE_UNSPLASH_KEY;
 
   const url = `https://api.unsplash.com/search/photos?query=${query}&client_id=${UNSPLASH_KEY}`;
   try {
