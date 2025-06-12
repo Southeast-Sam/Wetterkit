@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 
+// Normalerweise müsste hier commonjs verwendet werden, aber Netlify unterstützt ESM nicht direkt in Funktionen.
 exports.handler = async function (event) {
   const query = event.queryStringParameters.stadt || "stadt";
   const UNSPLASH_KEY = process.env.VITE_UNSPLASH_KEY;
