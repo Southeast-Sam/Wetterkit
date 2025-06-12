@@ -13,15 +13,11 @@ function App() {
   // async Stadt (unsplash) Bild API
   async function ladeStadtBild(stadt) {
     try {
-      const apiKeyUnsplash = import.meta.env.VITE_UNSPLASH_KEY;
-      const res = await fetch(
-        `https://api.unsplash.com/search/photos?query=${stadt}&client_id=${apiKeyUnsplash}`
-      );
+      const res = await fetch(`/.netlify/functions/getImage?stadt=${stadt}`);
       const daten = await res.json();
-      const bildUrl = daten.results[0]?.urls?.regular;
-      setStadtBild(bildUrl);
+      setStadtBild(daten.bild);
     } catch (err) {
-      console.error("Stadtbild konnte nicht gleaden werden", err);
+      console.error("Stadtbild konnte nicht geladen werden", err);
     }
   }
 
