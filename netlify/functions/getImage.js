@@ -9,6 +9,8 @@ exports.handler = async function (event) {
     const res = await fetch(url);
     const daten = await res.json();
 
+    console.log("Unsplash Daten:", daten);
+
     return {
       statusCode: 200,
       body: JSON.stringify({
